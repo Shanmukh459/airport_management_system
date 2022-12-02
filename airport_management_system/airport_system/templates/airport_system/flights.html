@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger view</title>
+</head>
+<style>
+    body {
+      background-image: url('https://burst.shopifycdn.com/photos/clouds-from-aircraft-window.jpg?width=1200&format=pjpg&exif=1&iptc=1');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+</style>
+<body>
+    <center>
+    <h1>Flights Scheduled for next {{ hours }} hours</h1>
+    <table cellspacing="3" border="1">
+        <tr bgcolor="skyblue">
+            <th>Airline</th>
+            <th>Number</th>
+            <th>Status</th>
+            <th>Baggage Claim</th>
+            <th>Gate</th>
+            <th>Time</th>
+        </tr>
+        {% for item in details %}
+        <tr bgcolor="lightgrey">
+            <td>{{ item.airline.name }}</td>
+            <td>{{ item.number }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.baggage_claim.label }}</td>
+            <td>{{ item.gate.label }}</td>
+            <td>{{ item.schedule_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        if(!window.opener){
+            window.open('http://127.0.0.1:8000/flights/{{ hours }}')
+        }
+        
+    </script>
+    </center>
+    
+</body>
+</html>
